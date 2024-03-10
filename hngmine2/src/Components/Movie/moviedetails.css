@@ -1,0 +1,56 @@
+.card{
+    padding: 1rem;
+    width: 100%;
+}
+.card-contianer{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* margin-top: 20rem; */
+}
+.rate{
+    color: #aaaaaa;
+    font-size: 10px;
+    padding-left: 0.5rem;
+}
+.rate1{
+    color: #aaaaaa;
+    font-size: 12px;
+    padding-top: 5px;
+}
+.title{
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #000000;
+}
+.card .link{
+    text-decoration: none;
+}
+.movie-rate{
+    display: flex;
+}
+.card-rate{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.card .image{
+    width: 100%;
+}
+
+
+@media (max-width:768px){
+    .card-contianer{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .card{
+        padding: 0.5rem;
+    }
+}

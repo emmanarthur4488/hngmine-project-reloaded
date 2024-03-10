@@ -1,0 +1,33 @@
+.feature{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12rem;
+    padding: 2rem;
+}
+.feature .feature-title{
+    font-size: 20px;
+}
+.feature .more{
+    display: flex;
+    align-items: center;
+}
+.feature .icon2{
+    width: 20%;
+    height: 40%;
+    margin-right: 2rem;
+    margin-top: 5px;
+}
+.feature .see-more{
+    font-size: 18px;
+    margin-right: 10px;
+    
+}
+
+@media (max-width:768px){
+    .feature{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+        padding: 1rem;
+    }
+}
