@@ -1,47 +1,47 @@
-import React from 'react'
 import './moviedetails.css'
 import { Link } from 'react-router-dom'
+import React, { useEffect, useState,} from 'react'
 import Hero from '../Hero/Hero'
 import Features from '../Features/Features'
 import Footer from '../Footer/Footer'
+import axios from 'axios'
 
-const Movie = ({foods}) => {
+const Movie = () => {
+
+  const [movie, setMovie] = useState([])
+
+  useEffect(() =>{
+    axios.get('https://api.themoviedb.org/3/discover/movie?api_key=b481a659203ddefe3ec399687c14e16b')
+    .then(response =>{
+      setMovie(response.data.results)
+    }).catch(err=>{console.log(err)})
+    
+  },[])
+
+  
+  
   return (
     <div>
       <Hero/>
       <Features/>
       <div className="card-contianer">
           {
-            foods && foods.map((food) =>
-
-              <div>
-                <div className="card">
-                  <Link className="link" to={food.foodname}>
-                    <div className="top-3">
-                      <img className="image" src={food.image} alt=""/>
+            movie.map((movie)=> (
+              <div className="movie-card">
+                  <Link className="link" to='/details'>
+                    <div className="movie-image">
+                        <img className="card-image" src={`https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg`} alt="icon"/>
                     </div>
-                    <p className="rate1">{food.price}</p>
-                    <p className="title">{food.foodname}</p>
 
-                    <div className="card-rate">
-                      <div className="movie-rate">
-                        <img src={food.image1} alt=""/>
-                        <p className="rate">{food.rate}</p>
-                      </div>
-                      <div className="movie-rate">
-                        <img src={food.image2} alt=""/>
-                        <p className="rate">{food.rate2}</p>
-                      </div>
+                    <div className="details">
+                        <h5 className="title">{movie.title}</h5>
+                        <p className="date">{movie.release_date}</p>
+                        <p className="genre">{movie.genre_ids}</p>
                     </div>
-                    <p className="rate1">{food.type}</p>
                   </Link>
-                </div>
-                <div></div>
-
-                
               </div>
-               
-            )
+            ))
+           
           }
       </div>
       <Footer/>

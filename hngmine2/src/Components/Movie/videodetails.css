@@ -109,8 +109,10 @@ nav{
     display:none;
     left: 120px;
 }
-.group{
-    width: 100%;
+.video .group{
+   height: 500px;
+   width: 100%;
+   border-radius: 10px;
 }
 .video{
     padding: 2rem;
@@ -266,6 +268,9 @@ nav{
 .mobile-menu-icon{
     display: none;
 }
+.home-link{
+    text-decoration: none;
+}
 
 
 
@@ -273,9 +278,11 @@ nav{
 
 
 @media (max-width: 768px){
-    .group{
+    .video .group{
+        height: 300px;
         width: 100%;
-    }
+        border-radius: 10px;
+     }
     .dics{
         display: block;
         margin-top: 1rem;
@@ -307,7 +314,7 @@ nav{
     }
 
     .nav-link-mobile{
-        position: absolute;
+        position: fixed;
         display: block;
         list-style: none;
         background-color: #ebe3e3;
@@ -345,5 +352,31 @@ nav{
         width: 140px;
         padding: 0;
     }
+    .description p{
+        font-size: 12px;
+        color: #7a7676;
+    }
+    .option h2{
+        font-size: 12px;
+        padding-left: 5px;
+    }
+    .opt-image{
+        width: 30px;
+    }
+    .last .text{
+        font-size: 12px;
+        padding: 5px;
+    }
+    .rated-awards .rate-award{
+        font-size: 10px;
+        padding-left: 1rem;
+        padding-top: 6px;
+    }
+    .movie-tip{
+        color: #aaaaaa;
+        font-size: 12px;
+        padding: 10px;
+    }
+    
     
 }

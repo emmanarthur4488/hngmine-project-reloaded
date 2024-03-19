@@ -134,7 +134,7 @@
     }
     .Parabellum h1{
         color: whitesmoke;
-        font-size: 17px;
+        font-size: 15px;
     }
     .sub-note{
         color: whitesmoke;
@@ -154,5 +154,10 @@
         color: whitesmoke;
         padding-left: 5px;
         font-size: 15px;
+    }
+    .watch{
+        margin-top: 1rem;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -27,7 +27,7 @@
     .feature{
         display: flex;
         justify-content: space-between;
-        margin-top: 3rem;
+        margin-top: 4.5rem;
         padding: 1rem;
     }
 }

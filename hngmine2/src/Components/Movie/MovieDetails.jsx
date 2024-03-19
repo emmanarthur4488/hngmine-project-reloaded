@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './videodetails.css'
 import Tv from '/src/IMG/tv.png'
 import Home from '/src/IMG/Home.png'
@@ -16,10 +16,23 @@ import TwoTickets from '/src/IMG/Two-Tickets.png'
 import List from '/src/IMG/List.png'
 import ExpandArrow from '/src/IMG/Expand Arrow.png'
 import Vector from '/src/IMG/Vector.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const MovieDetails = () => {
 
   const [isMobile, setIsMobile] = useState(false);
+
+  const [movie, setMovie] = useState([])
+
+  useEffect(() =>{
+    axios.get('https://api.themoviedb.org/3/discover/movie?api_key=b481a659203ddefe3ec399687c14e16b')
+    .then(response =>{
+      setMovie(response.data.results)
+      
+    }).catch(err=>{console.log(err)})
+    
+  },[0])
 
   return (
 
@@ -32,9 +45,11 @@ const MovieDetails = () => {
             <li className="tv">
               <img src={Tv} alt=""/><h2>MovieBox</h2>
             </li>
-            <li className="tvv">
-              <img src={Home} alt=""/><h2>Home</h2>
-            </li>
+            <Link className="home-link" to='/'>
+              <li className="tvv">
+                <img src={Home} alt=""/><h2>Home</h2>
+              </li>
+            </Link>
             <li className="tvvv">
               <img src={MovieProjector} alt=""/><h2>Movies</h2>
             </li>
@@ -42,7 +57,7 @@ const MovieDetails = () => {
               <img src={Show} alt=""/><h2>TV Series</h2>
             </li>
             <li className="tvv">
-              <img src={Calendar} alt=""/><h2>upcoming</h2>
+              <img src={Calendar} alt=""/><h2>Upcoming</h2>
             </li>
             <div className="note">
               <p className="note1">
@@ -73,57 +88,68 @@ const MovieDetails = () => {
         
         <div>
           <div className="video">
-            <img className="group" src={Group} alt=""/>
-            <div className="dics">
-              <div className="">
-                <div className="actions">
-                  <h2 className="movie-tip">Top Gun: Maverick • 2022 • PG-13 • 2h 10m</h2>
+          {
+            movie ? movie.map((movie, idx)=> (
+            <div key={idx[0]} className="movie-card">
+                  <Link className="link" to=''>
+                    <img className="card-image" src={`https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg`} alt="icon"/>
+                    <div className="dics">
+                    <div className="">
+                      <div className="actions">
+                      <h2 className="movie-tip">{movie.original_title}{movie.vote_average}</h2>
 
-                  <div className="btn">
-                    <div className="action-btn">
-                      <button className="action">Action</button>
+                        <div className="btn">
+                          <div className="action-btn">
+                            <button className="action">Action</button>
+                          </div>
+                          <div className="drama-btn">
+                            <button className="action">Drama</button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="description">
+                      <p>{movie.overview}</p> 
+                      </div>
                     </div>
-                    <div className="drama-btn">
-                      <button className="action">Drama</button>
+
+                  <div className="links">
+                    <div className="link">
+                      <div className="link-icon">
+                        <img className="icons" src={Heart} alt=""/>
+                        <img className="icons" src={Share} alt=""/>
+                        <img className="icons" src={Bookmark} alt=""/>
+                        <img className="icons" src={Star} alt=""/>
+                      </div>
+
+                      <div className="likes">
+                        <h2 className="like">8.5 <span>|350k</span></h2>
+                      </div>
+                    </div>
+                    <div className="options">
+                      <div className="option">
+                        <img className="opt-image" src={TwoTickets} alt=""/>
+                        <h2>See Showtimes</h2>
+                      </div>
+
+                      <div className="option2">
+                        <img className="opt-image" src={List} alt=""/>
+                        <h2>More watch options</h2>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div className="description">
-                  <p>
-                    After thirty years, Maverick is still pushing the envelope as a top naval aviator, <br/>
-                    but must confront ghosts of his past when he leads TOP GUN's elite graduates <br/>
-                    on a mission that demands the ultimate sacrifice from those chosen to fly it.
-                  </p> 
-                </div>
+          </div>
+
+              
+              </Link>
               </div>
+            ))
+            : null 
+          }
 
-              <div className="links">
-                <div className="link">
-                  <div className="link-icon">
-                    <img className="icons" src={Heart} alt=""/>
-                    <img className="icons" src={Share} alt=""/>
-                    <img className="icons" src={Bookmark} alt=""/>
-                    <img className="icons" src={Star} alt=""/>
-                  </div>
 
-                  <div className="likes">
-                    <h2 className="like">8.5 <span>|350k</span></h2>
-                  </div>
-                </div>
-                <div className="options">
-                  <div className="option">
-                    <img className="opt-image" src={TwoTickets} alt=""/>
-                    <h2>See Showtimes</h2>
-                  </div>
-
-                  <div className="option2">
-                    <img className="opt-image" src={List} alt=""/>
-                    <h2>More watch options</h2>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+            
 
             <div className="last">
               <div>
